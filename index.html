@@ -275,11 +275,41 @@
         .footer-links a:hover { color: var(--text-primary); }
 
         /* ── CTA button ── */
-        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 10px; font-weight: 600; font-size: 14px; text-decoration: none; transition: all 0.2s; }
+        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 10px; font-weight: 600; font-size: 14px; text-decoration: none; transition: all 0.2s; border: none; cursor: pointer; }
         .btn--primary { background: var(--accent); color: white; }
         .btn--primary:hover { background: #0284c7; transform: translateY(-1px); }
         .btn--ghost { background: var(--bg-card); border: 1px solid var(--border); color: var(--text-primary); }
         .btn--ghost:hover { border-color: var(--accent); }
+
+        /* ── Contact form ── */
+        .contact-form {
+            max-width: 640px; margin: 0 auto;
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 36px; text-align: left;
+        }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+        .form-group { display: flex; flex-direction: column; gap: 6px; }
+        .form-group--full { grid-column: 1 / -1; }
+        .form-label { font-size: 12px; font-weight: 500; color: var(--text-secondary); font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.06em; }
+        .form-input, .form-textarea {
+            background: var(--bg-primary); border: 1px solid var(--border);
+            border-radius: 8px; padding: 12px 14px; color: var(--text-primary);
+            font-family: var(--font-sans); font-size: 14px;
+            transition: border-color 0.2s, box-shadow 0.2s; outline: none;
+        }
+        .form-input:focus, .form-textarea:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-subtle);
+        }
+        .form-input::placeholder, .form-textarea::placeholder { color: var(--text-muted); }
+        .form-textarea { resize: vertical; min-height: 120px; }
+        .form-submit { margin-top: 8px; width: 100%; justify-content: center; font-size: 15px; padding: 14px 24px; }
+        .form-note { font-size: 11px; color: var(--text-muted); text-align: center; margin-top: 12px; }
+
+        @media (max-width: 768px) {
+            .form-row { grid-template-columns: 1fr; }
+            .contact-form { padding: 24px; }
+        }
 
         /* ── Responsive ── */
         @media (max-width: 768px) {
@@ -763,18 +793,48 @@
         <div class="section-label reveal">// get in touch</div>
         <h2 class="section-title reveal">Let's Talk Automation</h2>
         <p class="section-desc reveal" style="margin:0 auto 28px;">
-            Looking for Google Ads API expertise, AI-powered campaign management, or custom marketing automation?
+            Looking for Google Ads API expertise, AI-powered campaign management, or custom marketing automation? Send me a message.
         </p>
-        <div class="reveal" style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
-            <a href="mailto:petr.david.gyure@gmail.com" class="btn btn--primary">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
-                petr.david.gyure@gmail.com
-            </a>
-            <a href="https://github.com/petrgyure" target="_blank" class="btn btn--ghost">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                GitHub
-            </a>
-        </div>
+
+        <form class="contact-form reveal" id="contactForm" action="https://formsubmit.co/petr.david.gyure@gmail.com" method="POST">
+            <input type="hidden" name="_subject" value="New contact from petrgyure.github.io">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_next" value="https://petrgyure.github.io/#contact">
+            <input type="text" name="_honey" style="display:none">
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label" for="name">Name</label>
+                    <input class="form-input" type="text" id="name" name="name" placeholder="John" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="surname">Surname</label>
+                    <input class="form-input" type="text" id="surname" name="surname" placeholder="Doe" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label" for="email">Email</label>
+                    <input class="form-input" type="email" id="email" name="email" placeholder="john@company.com" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="contact">Contact</label>
+                    <input class="form-input" type="text" id="contact" name="contact" placeholder="Phone or LinkedIn">
+                </div>
+            </div>
+
+            <div class="form-group form-group--full" style="margin-bottom:16px;">
+                <label class="form-label" for="message">Message</label>
+                <textarea class="form-textarea" id="message" name="message" placeholder="Tell me about your project, goals, or how I can help..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn--primary form-submit">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+                Send Message
+            </button>
+            <p class="form-note">Messages are delivered to my inbox. I typically respond within 24 hours.</p>
+        </form>
     </div>
 </section>
 
