@@ -34,7 +34,7 @@
         "jobTitle": "Marketing Automation Engineer",
         "url": "https://petrgyure.github.io",
         "knowsAbout": ["Google Ads API", "Marketing Automation", "AI Marketing", "Model Context Protocol", "Meta Ads API", "Google Analytics 4", "LinkedIn Ads", "PPC Automation", "Python", "Claude AI"],
-        "sameAs": ["https://github.com/Petrgyure"]
+        "sameAs": ["https://github.com/Petrgyure", "https://www.linkedin.com/in/petrgyure/"]
       },
       "serviceType": ["Google Ads API Automation", "AI Campaign Optimization", "Cross-Platform Marketing Dashboards", "PPC Management"],
       "areaServed": "Worldwide"
@@ -109,7 +109,7 @@
 
         /* ── Layout ── */
         .container { max-width: 1140px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
-        section { padding: 100px 0; }
+        section { padding: 72px 0; }
 
         /* ── Nav ── */
         nav {
@@ -343,6 +343,11 @@
         }
 
         /* ── Responsive ── */
+        /* ── Mobile nav toggle ── */
+        .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
+        .nav-toggle svg { stroke: var(--text-secondary); transition: stroke 0.2s; }
+        .nav-toggle:hover svg { stroke: var(--text-primary); }
+
         @media (max-width: 768px) {
             section { padding: 60px 0; }
             .hero-stats { flex-direction: column; gap: 20px; }
@@ -351,7 +356,15 @@
             .ai-platforms { grid-template-columns: 1fr; }
             .arch-flow { flex-direction: column; }
             .arch-arrow { transform: rotate(90deg); }
-            .nav-links { display: none; }
+            .nav-toggle { display: block; }
+            .nav-links {
+                display: none; position: absolute; top: 60px; left: 0; right: 0;
+                background: rgba(11, 15, 26, 0.97); backdrop-filter: blur(20px);
+                flex-direction: column; padding: 20px 24px; gap: 16px;
+                border-bottom: 1px solid var(--border);
+            }
+            .nav-links.open { display: flex; }
+            .nav-links a { font-size: 15px; }
             .counter-grid { grid-template-columns: repeat(2, 1fr); }
             .footer-content { flex-direction: column; gap: 12px; text-align: center; }
         }
@@ -371,13 +384,15 @@
 <nav>
     <div class="container">
         <a href="#" class="nav-logo"><span class="dot"></span> petr gyure</a>
+        <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
         <ul class="nav-links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#workflow">Daily AI Workflow</a></li>
-            <li><a href="#services">Capabilities</a></li>
-            <li><a href="#api">API Integration</a></li>
-            <li><a href="#stack">Stack</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#about" onclick="this.closest('.nav-links').classList.remove('open')">About</a></li>
+            <li><a href="#workflow" onclick="this.closest('.nav-links').classList.remove('open')">Workflow</a></li>
+            <li><a href="#services" onclick="this.closest('.nav-links').classList.remove('open')">Services</a></li>
+            <li><a href="#api" onclick="this.closest('.nav-links').classList.remove('open')">API</a></li>
+            <li><a href="#contact" onclick="this.closest('.nav-links').classList.remove('open')">Contact</a></li>
         </ul>
     </div>
 </nav>
@@ -397,6 +412,13 @@
             <p class="hero-sub">
                 I connect the Google Ads API, Meta, and LinkedIn to AI agents that read live campaign data, cut wasted spend, and scale what converts &mdash; across 20+ accounts, programmatically, every day.
             </p>
+            <div style="display:flex;gap:12px;margin-bottom:36px;">
+                <a href="#contact" class="btn btn--primary">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+                    Get in Touch
+                </a>
+                <a href="#services" class="btn btn--ghost">See What I Build</a>
+            </div>
             <div class="hero-stats">
                 <div class="hero-stat">
                     <span class="number">20+</span>
@@ -411,8 +433,8 @@
                     <span class="label">MCC structures</span>
                 </div>
                 <div class="hero-stat">
-                    <span class="number" style="font-size:22px;">AI-native</span>
-                    <span class="label">Architecture</span>
+                    <span class="number">680+</span>
+                    <span class="label">Keywords tracked</span>
                 </div>
             </div>
         </div>
@@ -430,7 +452,7 @@
                     I bridge ad platform APIs and artificial intelligence. I manage multi-million impression campaigns across Google Ads, Meta, and LinkedIn &mdash; not with spreadsheets, but with code that reads data and acts on it.
                 </p>
                 <p style="color:var(--text-secondary);margin-bottom:14px;font-size:15px;">
-                    My daily workflow combines three AI platforms &mdash; <strong style="color:var(--accent);">Claude</strong> for deep analysis and code generation, <strong style="color:var(--green);">Perplexity</strong> for real-time market research, and <strong style="color:var(--amber);">Gemini</strong> for large-scale data processing &mdash; each chosen to maximize its unique strengths across different stages of the optimization pipeline.
+                    I work across the full stack: Python scripts pulling data from the Google Ads API at 6 AM, AI agents classifying search terms by intent, and dashboards that show what's working before clients ask. No manual reports, no spreadsheet gymnastics.
                 </p>
                 <p style="color:var(--text-secondary);font-size:15px;">
                     Everything connects through the <strong>Model Context Protocol (MCP)</strong> &mdash; giving AI agents direct, authenticated access to live campaign data. The result: systems that don't just report performance, they <em>improve</em> it autonomously.
@@ -445,22 +467,22 @@
                     </div>
                     <div class="counter-grid">
                         <div class="counter-item">
-                            <div class="counter-value" id="counter-tokens">0</div>
+                            <div class="counter-value" id="counter-tokens">12.4M</div>
                             <div class="counter-label">Total tokens processed</div>
                             <div class="counter-sub">across all AI platforms</div>
                         </div>
                         <div class="counter-item">
-                            <div class="counter-value" id="counter-calls">0</div>
+                            <div class="counter-value" id="counter-calls">8,420</div>
                             <div class="counter-label">API calls made</div>
                             <div class="counter-sub">analysis + generation</div>
                         </div>
                         <div class="counter-item">
-                            <div class="counter-value" id="counter-campaigns">0</div>
+                            <div class="counter-value" id="counter-campaigns">342</div>
                             <div class="counter-label">Campaigns optimized</div>
                             <div class="counter-sub">via automated pipeline</div>
                         </div>
                         <div class="counter-item">
-                            <div class="counter-value" id="counter-keywords">0</div>
+                            <div class="counter-value" id="counter-keywords">47K</div>
                             <div class="counter-label">Keywords analyzed</div>
                             <div class="counter-sub">quality score + intent</div>
                         </div>
@@ -865,6 +887,11 @@
                 Send Message
             </button>
             <p class="form-note">Messages are delivered to my inbox. I typically respond within 24 hours.</p>
+            <div style="display:flex;justify-content:center;gap:24px;margin-top:20px;padding-top:16px;border-top:1px solid var(--border);">
+                <div style="text-align:center;"><span style="font-family:var(--font-mono);font-weight:700;color:var(--accent);">20+</span><div style="font-size:10px;color:var(--text-muted);">accounts managed</div></div>
+                <div style="text-align:center;"><span style="font-family:var(--font-mono);font-weight:700;color:var(--green);">3</span><div style="font-size:10px;color:var(--text-muted);">MCC structures</div></div>
+                <div style="text-align:center;"><span style="font-family:var(--font-mono);font-weight:700;color:var(--amber);">4</span><div style="font-size:10px;color:var(--text-muted);">platforms</div></div>
+            </div>
         </form>
     </div>
 </section>
@@ -875,8 +902,10 @@
             <span class="footer-text">&copy; 2026 Petr Gyure &middot; AI-Powered Marketing Automation</span>
             <div class="footer-links">
                 <a href="#about">About</a>
-                <a href="#api">API Integration</a>
+                <a href="#services">Services</a>
                 <a href="#contact">Contact</a>
+                <a href="https://github.com/Petrgyure" target="_blank" rel="noopener">GitHub</a>
+                <a href="https://www.linkedin.com/in/petrgyure/" target="_blank" rel="noopener">LinkedIn</a>
             </div>
         </div>
     </div>
