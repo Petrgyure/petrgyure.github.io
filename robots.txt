@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://petrgyure.github.io/sitemap.xml
